@@ -60,7 +60,7 @@ function create_user {
     # nano /etc/ssh/sshd_config -> PermitRootLogin no
     sed -i 's/^PermitRootLogin.*/PermitRootLogin no/g' /etc/ssh/sshd_config
     sudo service sshd restart
-    su dan
+    su -l dan
 }
 
 function install_docker {
