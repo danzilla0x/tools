@@ -1,7 +1,7 @@
 # Tools
-1. Copy `./profile` to your `$HOME`:
+1. Run the script to start up the node environment:
 ```
-curl -s 'https://raw.githubusercontent.com/danzilla0x/tools/master/fill_profile_file.sh' | bash
+curl -Os 'https://raw.githubusercontent.com/danzilla0x/tools/master/fill_profile_file.sh' && bash fill_profile_file.sh && rm fill_profile_file.sh
 ```
 
 2. Runn script to rename Grafana hostname:

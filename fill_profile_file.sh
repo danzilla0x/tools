@@ -21,9 +21,8 @@ alias gpl='git pull '
 alias gplr='git pull --rebase '" >> $HOME/.profile
 }
 
-# Functions (do be moved out)
 function install_common_deps {
-    sudo apt update
+    sudo apt update && sudo apt upgrade -y
     sudo apt install git htop jq unzip wget -y
 }
 
@@ -52,15 +51,15 @@ function install_go {
 }
 
 function create_user {
-    useradd dan -m --shell /bin/bash
-    usermod dan -aG sudo
+    useradd $1 -m --shell /bin/bash
+    usermod $1 -aG sudo
     echo 'Update the password: '
-    passwd dan
-    echo 'dan ALL=(ALL) ALL' >> /etc/sudoers
+    passwd $1
+    echo $1' ALL=(ALL) ALL' >> /etc/sudoers
     # nano /etc/ssh/sshd_config -> PermitRootLogin no
     sed -i 's/^PermitRootLogin.*/PermitRootLogin no/g' /etc/ssh/sshd_config
     sudo service sshd restart
-    su -l dan
+    # su -l $1
 }
 
 function install_docker {
@@ -76,8 +75,15 @@ function install_docker {
     # curl -s https://raw.githubusercontent.com/razumv/helpers/main/tools/install_docker.sh | bash
 }
 
-echo "Adding aliases."
+read -p "Type new username: " USERNAME
+create_user $USERNAME
+su -l $USERNAME
+echo "Installing dependencies"
+install_common_deps
+install_build_deps
+echo "Adding aliase."
 add_aliases_general
 add_aliases_git
 
 source ~/.profile
+echo "Done"
