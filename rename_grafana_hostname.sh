@@ -22,3 +22,4 @@ fi
 sudo systemctl daemon-reload
 sudo systemctl enable vmagent && sudo systemctl restart vmagent
 sudo systemctl enable node_exporter && sudo systemctl restart node_exporter
+echo "Done."
