@@ -1,37 +1,20 @@
-echo "Running .profile..."
-
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+#!/bin/bash
 
 function add_aliases_general {
-    echo "\n# General aliases
+    echo -e "\n# General aliases
 alias ll='ls -la'
 alias llr='ls -lrta'" >> $HOME/.profile
 }
 
 function add_aliases_git {
-    echo "\n# Git commands
+    echo -e "\n# Git commands
 alias g='git '
 alias ga='git add '
-alias gsb='git status '
+alias gs='git status '
 alias gsb='git status -sb '
 alias gc='git checkout '
 alias gp='git push '
+alias gpf='git push -f '
 alias gpo='git push origin '
 alias gcm='git commit -m '
 alias gpl='git pull '
@@ -93,5 +76,8 @@ function install_docker {
     # curl -s https://raw.githubusercontent.com/razumv/helpers/main/tools/install_docker.sh | bash
 }
 
-add_aliases_general()
-add_aliases_git()
+echo "Adding aliases."
+add_aliases_general
+add_aliases_git
+
+source ~/.profile

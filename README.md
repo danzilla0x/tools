@@ -1,7 +1,7 @@
 # Tools
 1. Copy `./profile` to your `$HOME`:
 ```
-curl -s 'https://raw.githubusercontent.com/danzilla0x/tools/master/.profile' > ~/.profile
+curl -s 'https://raw.githubusercontent.com/danzilla0x/tools/master/fill_profile_file.sh' | bash
 ```
 
 2. Runn script to rename Grafana hostname:
