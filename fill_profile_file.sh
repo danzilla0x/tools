@@ -28,7 +28,7 @@ function install_common_deps {
 
 function install_build_deps {
     sudo apt update
-    sudo make clang pkg-config libgmp-dev libssl-dev build-essential python3 python3-venv python3-dev -y
+    sudo apt install clang pkg-config libgmp-dev libssl-dev build-essential python3 python3-venv python3-dev -y
 }
 
 function install_rust {
@@ -77,13 +77,13 @@ function install_docker {
 
 read -p "Type new username: " USERNAME
 create_user $USERNAME
-su -l $USERNAME
+#su -l $USERNAME # Doesn't work as expected :(
 echo "Installing dependencies"
 install_common_deps
 install_build_deps
 echo "Adding aliase."
-add_aliases_general
-add_aliases_git
+#add_aliases_general
+#add_aliases_git
 
 source ~/.profile
 echo "Done"
